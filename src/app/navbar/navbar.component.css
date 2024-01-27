@@ -1,0 +1,33 @@
+nav{
+    padding: 10px;
+    background-color: brown;
+}
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul{
+    display: flex;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+nav ul li{
+    list-style: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+nav ul li a{
+    color: white;
+}
+
+nav ul li:hover{
+    background-color: white;
+}
+
+nav ul li a:hover{
+    color: brown;
+}
