@@ -1,47 +1,43 @@
 <div class="container">
     <div class="form-container">
-        <form>
+        <form [formGroup]="frmPerson">
             <div class="form-group">
-                <label for="nom_persona">Nombres</label>
-                <input type="text" id="nom_persona" placeholder="Ingrese nombres" name="nom_persona">
+                <label for="nomPersona">Nombres</label>
+                <input type="text" id="nomPersona" placeholder="Ingrese nombres" name="nomPersona">
             </div>
 
             <div class="form-group">
-                <label for="apl_persona">Apellidos</label>
-                <input type="text" id="apl_persona" placeholder="Ingrese apellidos" name="apl_persona">
+                <label for="aplPersona">Apellidos</label>
+                <input type="text" id="aplPersona" placeholder="Ingrese apellidos" name="aplPersona">
             </div>
 
             <div class="form-group">
-                <label for="dni_persona">Dni</label>
-                <input type="text" id="dni_persona" placeholder="Ingrese el DNI" name="dni_persona">
+                <label for="dniPersona">Dni</label>
+                <input type="text" id="dniPersona" placeholder="Ingrese el DNI" name="dniPersona">
             </div>
 
             <div class="form-group">
-                <label for="correo_persona">Correo</label>
-                <input type="text" id="correo_persona" placeholder="Ingrese el correo" name="correo_persona">
+                <label for="correoPersona">Correo</label>
+                <input type="text" id="correoPersona" placeholder="Ingrese el correo" name="correoPersona">
             </div>
 
             <div class="form-group">
-                <label for="fnaci_persona">Fecha de Naci.</label>
-                <input type="date" id="fnaci_persona" placeholder="Fecha de nacimiento" name="fnaci_persona">
+                <label for="fnaciPersona">Fecha de Naci.</label>
+                <input type="date" id="fnaciPersona" placeholder="Fecha de nacimiento" name="fnaciPersona">
             </div>
 
             <div class="form-group">
-                <label for="id_sexo">Sexo</label>
-                <select id="id_sexo" name="id_sexo">
+                <label for="idSexo">Sexo</label>
+                <select id="idSexo" class="form-control" name="idSexo" formControlName="idSexo">
                     <option value="0">Seleccione el sexo</option>
-                    <!-- Agrega opciones según sea necesario -->
+                    <option *ngFor="let sexo of sex" [value]="sexo.idSexo">{{ sexo.desSexo }}</option>
                 </select>
-            </div>
-
-            <div class="form-group">
-                <label for="id_tipo">Tipo</label>
-                <select id="id_tipo" name="id_tipo">
+                <label for="idTipo">Tipo</label>
+                <select id="idTipo" class="form-control" name="idTipo" formControlName="idTipo">
                     <option value="0">Seleccione el tipo</option>
-                    <!-- Agrega opciones según sea necesario -->
+                    <option *ngFor="let tipo of type" [value]="tipo.idTipo">{{ tipo.nomTipo }}</option>
                 </select>
             </div>
-
             <button type="submit">Enviar</button>
         </form>
     </div>
@@ -53,19 +49,31 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>DNI</th>
+                    <th>Celular</th>
                     <th>Tipo</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Francisco Antonio</td>
-                    <td>Vargas Donayre</td>
-                    <td>73338875</td>
-                    <td>Jefe</td>
+                <tr *ngFor="let persona of person">
+                    <th scope="row">{{persona.idPersona}}</th>
+                    <td>{{persona.nomPersona}}</td>
+                    <td>{{persona.aplPersona}}</td>
+                    <td>{{persona.dniPersona}}</td>
+                    <td>{{persona.celuPersona}}</td>
+                    <td>{{persona.objType.nomTipo}}</td>
                     <td>
-                        m 
+                        <a class="modificar btn btn-warning">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                              </svg>
+                        </a>
+                        <a class="btn btn-danger" (click)="deleteSoftPerson(persona.idPersona)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                              </svg>
+                        </a>
                     </td>
                 </tr>
             </tbody>

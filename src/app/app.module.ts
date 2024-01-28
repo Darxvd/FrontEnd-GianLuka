@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { PersonComponent } from './person/person.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TypeComponent } from './type/type/type.component';
 
 @NgModule({
   declarations: [
@@ -14,12 +16,14 @@ import { HeaderComponent } from './header/header.component';
     PersonComponent,
     NavbarComponent,
     HeaderComponent,
+    TypeComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

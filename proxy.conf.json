@@ -4,5 +4,17 @@
       "secure": false,
       "changeOrigin": true,
       "loglevel": "debug"
+    },
+    "/sex/*": {
+      "target": "http://localhost:8081",
+      "secure": false,
+      "changeOrigin": true,
+      "loglevel": "debug"
+    },
+    "/type/*": {
+      "target": "http://localhost:8081",
+      "secure": false,
+      "changeOrigin": true,
+      "loglevel": "debug"
     }
   }
