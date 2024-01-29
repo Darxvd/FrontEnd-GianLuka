@@ -4,8 +4,15 @@
     margin: 15px;
 }
 
+h5{
+    background-color: rgb(87, 6, 6);;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
 .form-container {
-    max-width: 350px;
+    max-width: 400px;
     margin-right: 20px;
     border: 2px solid rgb(87, 6, 6);
     padding: 10px;
@@ -45,8 +52,9 @@ button:hover {
 }
 
 .table-container {
-    flex: 1;
+    margin-top: 10px;
     overflow: auto;
+    width: 900px;
 }
 
 .table-container table {
@@ -71,4 +79,25 @@ button:hover {
 
 .modificar{
     margin-right: 10px;
+}
+
+.additional-links{
+    margin-top: 5px;
+}
+
+.inactive{
+    background-color: rgb(87, 6, 6);
+    color: white;
+    padding: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.all-person{
+    color: white;
+    padding: 5px;
+    background-color: rgb(87, 6, 6);
+    text-decoration: none;
+    border-radius: 5px;
 }

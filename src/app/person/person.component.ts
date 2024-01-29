@@ -18,7 +18,8 @@ export class PersonComponent implements OnInit {
   person:PersonEntity[]=[];
   sex:SexEntity[]=[];
   type:TypeEntity[]=[];
-
+  selectedPerson: PersonEntity | undefined;
+  
   frmPerson = new FormGroup({
     idPersona: new FormControl(''),
     nomPersona: new FormControl(''),
@@ -31,7 +32,30 @@ export class PersonComponent implements OnInit {
     idSexo: new FormControl(0)
   })
 
+  loadPersonDataForUpdate(person: PersonEntity) {
+    this.selectedPerson = person;
+    
+    this.frmPerson.patchValue({
+      idPersona: person.idPersona ? person.idPersona.toString() : '',
+      nomPersona: person.nomPersona,
+      aplPersona: person.aplPersona,
+      dniPersona: person.dniPersona,
+      celuPersona: person.celuPersona,
+      correoPersona: person.correoPersona,
+      fnaciPersona: person.fnaciPersona,
+      idTipo: person.objType.idTipo,
+      idSexo: person.objSex.idSexo
+    });
+  }
+
+  
   constructor(private personService: PersonService, private typeService: TypeService){}
+  
+  ngOnInit(): void {
+    this.listAllActive();
+    this.listSex();
+    this.listType();
+  }
 
   listAllActive(){
     this.personService.listActivePerson().subscribe(person=>{
@@ -52,6 +76,22 @@ export class PersonComponent implements OnInit {
     })
   }
 
+  registerOrUpdatePerson() {
+    const personData = this.frmPerson.value;
+    this.personService.saveOrUpdatePerson(personData).subscribe(res => {
+      this.frmPerson.reset();
+
+      const idSexoControl = this.frmPerson.get('idSexo');
+      const idTipoControl = this.frmPerson.get('idTipo');
+  
+      if (idSexoControl && idTipoControl) {
+        idSexoControl.setValue(0);
+        idTipoControl.setValue(0);
+      }
+      this.listAllActive();
+    });
+  }
+
   deleteSoftPerson(codigo:number){
     this.personService.deleteSoftPerson(codigo).subscribe(person => {
       this.listAllActive();
@@ -63,10 +103,5 @@ export class PersonComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    this.listAllActive();
-    this.listSex();
-    this.listType();
-  }
 
 }

@@ -7,9 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class PersonService {
 
+  codigo = 0;
+
   private urlAllActive = 'person/list-active'
   private urlDeleteSoft = 'person/delete'
   private urlSex = 'sex/list'
+  private urlRegister = 'person/register'
+  private urlUpdate = 'person/update'
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +23,15 @@ export class PersonService {
 
   listSex(): Observable<any>{
     return this.http.get<any>(this.urlSex);
+  }
+
+  saveOrUpdatePerson(personData: any): Observable<any> {
+    if (personData.idPersona) {
+      const url = `${this.urlUpdate}/${personData.idPersona}`;
+      return this.http.put<any>(url, personData);
+    } else {
+      return this.http.post<any>(this.urlRegister, personData);
+    }
   }
 
   deleteSoftPerson(codigo: number){
