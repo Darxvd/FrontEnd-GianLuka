@@ -18,10 +18,8 @@ export class PersonService {
   private urlAllInactive = 'person/list-inactive'
   private urlAllPerson = 'person/list-all'
   private urlPersonName = 'person/list-by-name'
-<<<<<<< HEAD
-  private urlDeleteHard = 'person//delete/definit'
-=======
->>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
+  private urlDeleteHard = 'person/delete/definit'
+  private urlActivatePerson = 'person/activate'
 
   constructor(private http: HttpClient) { }
 
@@ -54,19 +52,16 @@ export class PersonService {
     return this.http.delete(this.urlDeleteSoft+'/'+codigo);
   }
 
-<<<<<<< HEAD
   
   deleteHardperson(codigo: number){
     return this.http.delete(this.urlDeleteHard+'/'+codigo);
   }
-=======
->>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
   public findName(nombre:string){
     return this.http.get<any>(this.urlPersonName+'/'+ nombre)
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
+  activatePerson(codigo: number): Observable<any> {
+    const url = `${this.urlActivatePerson}/${codigo}`;
+    return this.http.put<any>(url, {});
+  }
 }

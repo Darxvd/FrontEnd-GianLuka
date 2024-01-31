@@ -62,6 +62,9 @@ export class TablesComponent {
     this.router.navigate(['/empleado']);
   }
   
-
-
+  activatePerson(codigo: number) {
+    this.personService.activatePerson(codigo).subscribe(person => {
+      this.listAllInactive();
+    });
+  }
 }

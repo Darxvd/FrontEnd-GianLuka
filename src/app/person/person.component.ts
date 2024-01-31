@@ -18,11 +18,6 @@ export class PersonComponent implements OnInit {
   sex:SexEntity[]=[];
   type:TypeEntity[]=[];
   selectedPerson: PersonEntity | undefined
-<<<<<<< HEAD
-=======
-  pagina: number = 1;
-  elementosPorPagina: number = 10;
->>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
   
   frmPerson = new FormGroup({
     idPersona: new FormControl(''),
@@ -73,20 +68,14 @@ export class PersonComponent implements OnInit {
 
   listAllInactive(){
     this.personService.listInactivePerson().subscribe(person=>{
-<<<<<<< HEAD
         this.person=person;
     })
 }
 
-=======
-      this.person=person;
-    })
-  }
->>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
 
   listAllPerson(){
     this.personService.listAllPerson().subscribe(person=>{
-      this.person=person
+      this.person=person;
     })
   }
 
@@ -139,13 +128,4 @@ export class PersonComponent implements OnInit {
       }
     }
   }
-<<<<<<< HEAD
-=======
-  
-
-
-
-
-
->>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
 }
