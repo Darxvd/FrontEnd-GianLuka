@@ -102,6 +102,10 @@ button:hover {
     height: 35px;
 }
 
+.modificar{
+    margin-right: 5px;
+}
+
 .all-person{
     color: white;
     padding: 5px;
@@ -130,11 +134,8 @@ button:hover {
     margin-top: 0px;
     padding: 0px;
     border-radius: 5px;
-<<<<<<< HEAD
 }
 
 dialog{
     transition: 0.5s;
-=======
->>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
 }
