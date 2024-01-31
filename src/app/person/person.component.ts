@@ -13,12 +13,11 @@ import { TypeEntity } from './models/type-entity';
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
-
   data:any[]=[];
   person:PersonEntity[]=[];
   sex:SexEntity[]=[];
   type:TypeEntity[]=[];
-  selectedPerson: PersonEntity | undefined;
+  selectedPerson: PersonEntity | undefined
   
   frmPerson = new FormGroup({
     idPersona: new FormControl(''),
@@ -28,6 +27,7 @@ export class PersonComponent implements OnInit {
     celuPersona: new FormControl(''),
     correoPersona: new FormControl(''),
     fnaciPersona: new FormControl(''),
+    activoPersona: new FormControl(''),
     idTipo: new FormControl(0),
     idSexo: new FormControl(0)
   })
@@ -48,6 +48,7 @@ export class PersonComponent implements OnInit {
     });
   }
 
+
   
   constructor(private personService: PersonService, private typeService: TypeService){}
   
@@ -55,12 +56,26 @@ export class PersonComponent implements OnInit {
     this.listAllActive();
     this.listSex();
     this.listType();
+
   }
 
   listAllActive(){
     this.personService.listActivePerson().subscribe(person=>{
       this.person=person;
       console.log("Sigan viendo");
+    })
+  }
+
+  listAllInactive(){
+    this.personService.listInactivePerson().subscribe(person=>{
+        this.person=person;
+    })
+}
+
+
+  listAllPerson(){
+    this.personService.listAllPerson().subscribe(person=>{
+      this.person=person
     })
   }
 
@@ -98,10 +113,19 @@ export class PersonComponent implements OnInit {
     })
   }
 
-
-
-
-
-
-
+  findName() {
+    const nombreControl = this.frmPerson.get('nomPersona');
+    if (nombreControl) {
+      const nombre = nombreControl.value!;
+      this.personService.nombre = "" + nombre;
+      
+      if (nombre == "") {
+        this.listAllActive();
+      } else {
+        this.personService.findName("" + nombre).subscribe(person => {
+          this.person = person;
+        });
+      }
+    }
+  }
 }
