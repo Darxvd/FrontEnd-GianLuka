@@ -7,6 +7,7 @@ export class PersonEntity{
     celuPersona!: string;
     fnaciPersona!: string;
     correoPersona!: string;
+    activoPersona!: string;
     objType!: {
         idTipo: number;
         nomTipo: string;

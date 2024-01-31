@@ -5,6 +5,12 @@
       "changeOrigin": true,
       "loglevel": "debug"
     },
+    "/tablas/*": {
+      "target": "http://localhost:8081",
+      "secure": false,
+      "changeOrigin": true,
+      "loglevel": "debug"
+    },
     "/sex/*": {
       "target": "http://localhost:8081",
       "secure": false,

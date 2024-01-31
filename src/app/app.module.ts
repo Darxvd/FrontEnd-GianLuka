@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TypeComponent } from './type/type/type.component';
+import { TablesComponent } from './person/tables/tables.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TypeComponent } from './type/type/type.component';
     NavbarComponent,
     HeaderComponent,
     TypeComponent,
+    TablesComponent,
   ],
   imports: [
     BrowserModule,

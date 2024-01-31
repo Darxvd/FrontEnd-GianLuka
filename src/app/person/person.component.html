@@ -1,4 +1,4 @@
-<div class="container">
+<div class="custom-container">
     <div class="form-container">
         <form [formGroup]="frmPerson" (ngSubmit)="registerOrUpdatePerson()">
             <h5>Registrar Empleado</h5>
@@ -49,8 +49,23 @@
     </div>
     <div class="table-container">
         <div class="additional-links">
-            <a class="inactive">Empleados inactivos</a>
-            <a class="all-person" >Todos los empleados</a>
+            <a class="active" (click)="listAllActive()">Regresar</a>
+<<<<<<< HEAD
+            <a class="all-person" routerLink="inactivos">Personas Inactivas</a>
+=======
+            <a class="inactive" (click)="listAllInactive()">Empleados inactivos</a>
+            <a class="all-person" (click)="listAllPerson()" >Todos los empleados</a>
+>>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
+            <form [formGroup]="frmPerson" (ngSubmit)="findName()">
+                <div>
+                    <input class="bus" type="text"name="nomPersona" placeholder="Ingrese nombres" formControlName="nomPersona">
+                </div>
+                <button class="boton-buscar">
+                    <svg style="margin-top: 0px;" xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
+            </form>
         </div>
         <table>
             <thead>
@@ -61,6 +76,7 @@
                     <th>DNI</th>
                     <th>Celular</th>
                     <th>Tipo</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -70,8 +86,9 @@
                     <td>{{persona.nomPersona}}</td>
                     <td>{{persona.aplPersona}}</td>
                     <td>{{persona.dniPersona}}</td>
-                    <td>{{persona.celuPersona}}</td>
+                    <td>{{persona.celuPersona}}</td> 
                     <td>{{persona.objType.nomTipo}}</td>
+                    <td>{{persona.activoPersona}}</td>
                     <td>
                         <a class="modificar btn btn-warning" (click)="loadPersonDataForUpdate(persona)" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

@@ -1,7 +1,9 @@
-.container {
+.custom-container {
     display: flex;
-    max-width: auto; 
-    margin: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 h5{
@@ -12,11 +14,11 @@ h5{
 }
 
 .form-container {
-    max-width: 400px;
+    width: 350px;
+    height: 720px;
     margin-right: 20px;
     border: 2px solid rgb(87, 6, 6);
     padding: 10px;
-    margin-top: 10px;
 }
 
 .form-container form {
@@ -41,24 +43,21 @@ input, select {
 button {
     margin-top: 10px;
     padding: 10px;
-    background-color: #007BFF;
+    background-color: rgb(124, 13, 13);
     color: #fff;
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: rgb(87, 6, 6);
 }
 
 .table-container {
-    margin-top: 10px;
     overflow: auto;
-    width: 900px;
 }
 
 .table-container table {
-    width: 800px;
     margin-top: 10px;
 }
 
@@ -77,12 +76,20 @@ button:hover {
     background-color: #f2f2f2;
 }
 
-.modificar{
-    margin-right: 10px;
-}
-
 .additional-links{
     margin-top: 5px;
+    display: flex;
+}
+
+.active{
+    background-color: rgb(146, 196, 10);
+    color: white;
+    padding: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: black;
+    height: 35px;
 }
 
 .inactive{
@@ -92,6 +99,7 @@ button:hover {
     margin-right: 10px;
     text-decoration: none;
     border-radius: 5px;
+    height: 35px;
 }
 
 .all-person{
@@ -100,4 +108,33 @@ button:hover {
     background-color: rgb(87, 6, 6);
     text-decoration: none;
     border-radius: 5px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+.bus{
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid rgb(87, 6, 6);;
+    margin-right: 5px;
+}
+
+.additional-links form{
+    display: flex;
+}
+
+.boton-buscar{
+    width: 50px;
+    height: 35px;
+    margin-top: 0px;
+    padding: 0px;
+    border-radius: 5px;
+<<<<<<< HEAD
+}
+
+dialog{
+    transition: 0.5s;
+=======
+>>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
 }

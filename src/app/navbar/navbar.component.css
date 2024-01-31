@@ -1,6 +1,11 @@
 nav{
     padding: 10px;
+<<<<<<< HEAD
     background-color: brown;
+    margin-bottom: 10px;
+=======
+    background-color: rgb(87, 6, 6);
+>>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
 }
 .header-content{
     display: flex;
@@ -22,6 +27,7 @@ nav ul li{
 
 nav ul li a{
     color: white;
+    text-decoration: none;
 }
 
 nav ul li:hover{
