@@ -50,7 +50,12 @@
     <div class="table-container">
         <div class="additional-links">
             <a class="active" (click)="listAllActive()">Regresar</a>
+<<<<<<< HEAD
             <a class="all-person" routerLink="inactivos">Personas Inactivas</a>
+=======
+            <a class="inactive" (click)="listAllInactive()">Empleados inactivos</a>
+            <a class="all-person" (click)="listAllPerson()" >Todos los empleados</a>
+>>>>>>> d9ff3564eac66d328bef3ebce9820cb9fdb1b8a1
             <form [formGroup]="frmPerson" (ngSubmit)="findName()">
                 <div>
                     <input class="bus" type="text"name="nomPersona" placeholder="Ingrese nombres" formControlName="nomPersona">
