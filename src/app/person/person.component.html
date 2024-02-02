@@ -51,15 +51,22 @@
         <div class="additional-links">
             <a class="active" (click)="listAllActive()">Regresar</a>
             <a class="all-person" routerLink="inactivos">Personas Inactivas</a>
-            <form [formGroup]="frmPerson" (ngSubmit)="findName()">
+            <form class="formone" [formGroup]="frmPerson" (ngSubmit)="findNameActive()">
                 <div>
-                    <input class="bus" type="text"name="nomPersona" placeholder="Ingrese nombres" formControlName="nomPersona">
+                    <input class="bus" type="text"name="nomPersona" placeholder="Buscar por nombre" formControlName="nomPersona">
                 </div>
                 <button class="boton-buscar">
                     <svg style="margin-top: 0px;" xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                     </svg>
                 </button>
+            </form>
+            <form [formGroup]="frmPerson" (ngSubmit)="findByTypePersonActive()">
+                <select class="control" formControlName="idTipo">
+                    <option value="0">Seleccione el tipo</option>
+                    <option *ngFor="let tipo of type" [value]="tipo.idTipo">{{ tipo.nomTipo }}</option>
+                </select>
+                <button class="boton-buscar" (click)="findByTypePersonActive()">Buscar</button>
             </form>
         </div>
         <table>

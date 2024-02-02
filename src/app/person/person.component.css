@@ -124,6 +124,18 @@ button:hover {
     margin-right: 5px;
 }
 
+.formone{
+    margin-right: 10px;
+}
+
+.control{
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid rgb(87, 6, 6);;
+    margin-right: 5px;
+}
+
 .additional-links form{
     display: flex;
 }

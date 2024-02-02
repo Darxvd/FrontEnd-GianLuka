@@ -17,9 +17,12 @@ export class PersonService {
   private urlUpdate = 'person/update'
   private urlAllInactive = 'person/list-inactive'
   private urlAllPerson = 'person/list-all'
-  private urlPersonName = 'person/list-by-name'
+  private urlPersonNameActive = 'person/list-by-name-active'
+  private urlPersonNameInactive = 'person/list-by-name-inactive'
   private urlDeleteHard = 'person/delete/definit'
   private urlActivatePerson = 'person/activate'
+  private urlPersonTypeActive = 'person/list-by-type-active'
+  private urlPersonTypeInactive = 'person/list-by-type-inactive'
 
   constructor(private http: HttpClient) { }
 
@@ -56,12 +59,33 @@ export class PersonService {
   deleteHardperson(codigo: number){
     return this.http.delete(this.urlDeleteHard+'/'+codigo);
   }
-  public findName(nombre:string){
-    return this.http.get<any>(this.urlPersonName+'/'+ nombre)
+
+  findNameActive(nombre:string){
+    return this.http.get<any>(this.urlPersonNameActive+'/'+ nombre)
+  }
+
+  findNameInactive(nombre:string){
+    return this.http.get<any>(this.urlPersonNameInactive+'/'+ nombre)
   }
 
   activatePerson(codigo: number): Observable<any> {
     const url = `${this.urlActivatePerson}/${codigo}`;
     return this.http.put<any>(url, {});
   }
+
+  findTypePersonActive(categoria: number) {
+    if (categoria === 0) {
+      return this.http.get<any>(this.urlAllActive);
+    } else {
+      return this.http.get<any>(this.urlPersonTypeActive + '/' + categoria); 
+    }
+  }
+  findTypePersonInactive(categoria: number) {
+    if (categoria === 0) {
+      return this.http.get<any>(this.urlAllInactive);
+    } else {
+      return this.http.get<any>(this.urlPersonTypeInactive + '/' + categoria); 
+    }
+  }
+
 }

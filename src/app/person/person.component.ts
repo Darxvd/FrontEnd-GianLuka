@@ -113,7 +113,7 @@ export class PersonComponent implements OnInit {
     })
   }
 
-  findName() {
+  findNameActive() {
     const nombreControl = this.frmPerson.get('nomPersona');
     if (nombreControl) {
       const nombre = nombreControl.value!;
@@ -122,10 +122,24 @@ export class PersonComponent implements OnInit {
       if (nombre == "") {
         this.listAllActive();
       } else {
-        this.personService.findName("" + nombre).subscribe(person => {
+        this.personService.findNameActive("" + nombre).subscribe(person => {
           this.person = person;
         });
       }
     }
   }
+
+  findByTypePersonActive() {
+    const type = this.frmPerson.controls['idTipo'].value;
+    if (type === 0 || type === null) {
+      this.listAllActive();
+    } else {
+      const typeNumber = parseInt("" + type, 10);
+      this.personService.findTypePersonActive(typeNumber).subscribe(person => {
+        this.person = person;
+      });
+    }
+  }
+
+
 }
