@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonService } from './service/person.service';
 import { Route, Router } from '@angular/router';
 import { PersonEntity } from './models/person-entity';
@@ -21,7 +21,7 @@ export class PersonComponent implements OnInit {
   
   frmPerson = new FormGroup({
     idPersona: new FormControl(''),
-    nomPersona: new FormControl(''),
+    nomPersona: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
     aplPersona: new FormControl(''),
     dniPersona: new FormControl(''),
     celuPersona: new FormControl(''),

@@ -1,7 +1,11 @@
 nav{
     padding: 10px;
     background-color: brown;
+    position: fixed;
     margin-bottom: 10px;
+    margin-top: 50px;
+    width: 100%;
+    z-index: 900;
 }
 .header-content{
     display: flex;
