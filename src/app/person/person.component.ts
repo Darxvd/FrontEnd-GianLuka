@@ -5,7 +5,7 @@ import { Route, Router } from '@angular/router';
 import { PersonEntity } from './models/person-entity';
 import { SexEntity } from './models/sex-entity';
 import { TypeService } from '../type/service/type.service';
-import { TypeEntity } from './models/type-entity';
+import { TypeEntity } from '../type/models/type-entity';
 
 @Component({
   selector: 'app-person',
@@ -18,6 +18,8 @@ export class PersonComponent implements OnInit {
   sex:SexEntity[]=[];
   type:TypeEntity[]=[];
   selectedPerson: PersonEntity | undefined
+  searchResults: PersonEntity[] = [];
+  
   
   frmPerson = new FormGroup({
     idPersona: new FormControl(''),
@@ -56,8 +58,23 @@ export class PersonComponent implements OnInit {
     this.listAllActive();
     this.listSex();
     this.listType();
-
   }
+
+  cleanItems(){
+    this.personService.listActivePerson().subscribe(person=>{
+      this.person=person;
+      this.frmPerson.reset();
+
+      const idSexoControl = this.frmPerson.get('idSexo');
+      const idTipoControl = this.frmPerson.get('idTipo');
+  
+      if (idSexoControl && idTipoControl) {
+        idSexoControl.setValue(0);
+        idTipoControl.setValue(0);
+      }
+    })
+  }
+  
 
   listAllActive(){
     this.personService.listActivePerson().subscribe(person=>{
@@ -106,6 +123,7 @@ export class PersonComponent implements OnInit {
       this.listAllActive();
     });
   }
+  
 
   deleteSoftPerson(codigo:number){
     this.personService.deleteSoftPerson(codigo).subscribe(person => {
@@ -140,6 +158,4 @@ export class PersonComponent implements OnInit {
       });
     }
   }
-
-
 }

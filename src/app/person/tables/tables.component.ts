@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { PersonEntity } from '../models/person-entity';
 import { SexEntity } from '../models/sex-entity';
-import { TypeEntity } from '../models/type-entity';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PersonService } from '../service/person.service';
 import { TypeService } from 'src/app/type/service/type.service';
 import { Route, Router } from '@angular/router';
+import { TypeEntity } from 'src/app/type/models/type-entity';
 
 @Component({
   selector: 'app-tables',
@@ -66,7 +66,7 @@ export class TablesComponent {
   }
 
   navigateToEmpleado() {
-    this.router.navigate(['/empleado']);
+    this.router.navigate(['/home/empleado']);
   }
   
   activatePerson(codigo: number) {
