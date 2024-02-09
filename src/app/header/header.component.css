@@ -1,6 +1,12 @@
 header {
     background-color: #f0f0f0;
     padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    z-index: 1000;
 }
 
 .header-content {
@@ -18,7 +24,7 @@ h4{
 
 button {
     margin-left: auto;
-    background-color: rgb(87, 6, 6);
+    background-color: rgb(57, 85, 107);
     border-radius: 5px;
     border: 0px;
     padding: 5px;

@@ -10,6 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TypeComponent } from './type/type/type.component';
 import { TablesComponent } from './person/tables/tables.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { TablesComponent } from './person/tables/tables.component';
     HeaderComponent,
     TypeComponent,
     TablesComponent,
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

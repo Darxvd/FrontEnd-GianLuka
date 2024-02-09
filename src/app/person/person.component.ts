@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonService } from './service/person.service';
 import { Route, Router } from '@angular/router';
 import { PersonEntity } from './models/person-entity';
 import { SexEntity } from './models/sex-entity';
 import { TypeService } from '../type/service/type.service';
-import { TypeEntity } from './models/type-entity';
+import { TypeEntity } from '../type/models/type-entity';
 
 @Component({
   selector: 'app-person',
@@ -18,10 +18,12 @@ export class PersonComponent implements OnInit {
   sex:SexEntity[]=[];
   type:TypeEntity[]=[];
   selectedPerson: PersonEntity | undefined
+  searchResults: PersonEntity[] = [];
+  
   
   frmPerson = new FormGroup({
     idPersona: new FormControl(''),
-    nomPersona: new FormControl(''),
+    nomPersona: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
     aplPersona: new FormControl(''),
     dniPersona: new FormControl(''),
     celuPersona: new FormControl(''),
@@ -56,8 +58,23 @@ export class PersonComponent implements OnInit {
     this.listAllActive();
     this.listSex();
     this.listType();
-
   }
+
+  cleanItems(){
+    this.personService.listActivePerson().subscribe(person=>{
+      this.person=person;
+      this.frmPerson.reset();
+
+      const idSexoControl = this.frmPerson.get('idSexo');
+      const idTipoControl = this.frmPerson.get('idTipo');
+  
+      if (idSexoControl && idTipoControl) {
+        idSexoControl.setValue(0);
+        idTipoControl.setValue(0);
+      }
+    })
+  }
+  
 
   listAllActive(){
     this.personService.listActivePerson().subscribe(person=>{
@@ -106,6 +123,7 @@ export class PersonComponent implements OnInit {
       this.listAllActive();
     });
   }
+  
 
   deleteSoftPerson(codigo:number){
     this.personService.deleteSoftPerson(codigo).subscribe(person => {
@@ -113,7 +131,7 @@ export class PersonComponent implements OnInit {
     })
   }
 
-  findName() {
+  findNameActive() {
     const nombreControl = this.frmPerson.get('nomPersona');
     if (nombreControl) {
       const nombre = nombreControl.value!;
@@ -122,10 +140,22 @@ export class PersonComponent implements OnInit {
       if (nombre == "") {
         this.listAllActive();
       } else {
-        this.personService.findName("" + nombre).subscribe(person => {
+        this.personService.findNameActive("" + nombre).subscribe(person => {
           this.person = person;
         });
       }
+    }
+  }
+
+  findByTypePersonActive() {
+    const type = this.frmPerson.controls['idTipo'].value;
+    if (type === 0 || type === null) {
+      this.listAllActive();
+    } else {
+      const typeNumber = parseInt("" + type, 10);
+      this.personService.findTypePersonActive(typeNumber).subscribe(person => {
+        this.person = person;
+      });
     }
   }
 }

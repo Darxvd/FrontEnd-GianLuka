@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { PersonEntity } from '../models/person-entity';
 import { SexEntity } from '../models/sex-entity';
-import { TypeEntity } from '../models/type-entity';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PersonService } from '../service/person.service';
 import { TypeService } from 'src/app/type/service/type.service';
 import { Route, Router } from '@angular/router';
+import { TypeEntity } from 'src/app/type/models/type-entity';
 
 @Component({
   selector: 'app-tables',
@@ -37,6 +37,8 @@ export class TablesComponent {
   
   ngOnInit(): void {
     this.listAllInactive();
+    this.listSex();
+    this.listType();
   }
 
   listAllInactive(){
@@ -45,13 +47,18 @@ export class TablesComponent {
     })
   }
 
-  listAllPerson(){
-    this.personService.listAllPerson().subscribe(person=>{
-      this.person=person
+  listSex(){
+    this.personService.listSex().subscribe(data=>{
+      this.sex=data;
     })
   }
 
-  
+  listType(){
+    this.typeService.listActivType().subscribe(type=>{
+      this.type=type;
+    })
+  }
+    
   deleteHardPerson(codigo:number){
     this.personService.deleteHardperson(codigo).subscribe(person=>{
       this.listAllInactive();
@@ -59,7 +66,7 @@ export class TablesComponent {
   }
 
   navigateToEmpleado() {
-    this.router.navigate(['/empleado']);
+    this.router.navigate(['/home/empleado']);
   }
   
   activatePerson(codigo: number) {
@@ -67,4 +74,33 @@ export class TablesComponent {
       this.listAllInactive();
     });
   }
+
+  findNameInactive() {
+    const nombreControl = this.frmPerson.get('nomPersona');
+    if (nombreControl) {
+      const nombre = nombreControl.value!;
+      this.personService.nombre = "" + nombre;
+      
+      if (nombre == "") {
+        this.listAllInactive();
+      } else {
+        this.personService.findNameInactive("" + nombre).subscribe(person => {
+          this.person = person;
+        });
+      }
+    }
+  }
+
+  findByTypePersonInactive() {
+    const type = this.frmPerson.controls['idTipo'].value;
+    if (type === 0 || type === null) {
+      this.listAllInactive();
+    } else {
+      const typeNumber = parseInt("" + type, 10);
+      this.personService.findTypePersonInactive(typeNumber).subscribe(person => {
+        this.person = person;
+      });
+    }
+  }
+
 }

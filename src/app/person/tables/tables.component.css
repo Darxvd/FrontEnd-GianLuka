@@ -1,3 +1,6 @@
+.container-pri{
+    padding-top: 120px;
+}
 table {
     margin-top: 20px;
     margin: auto; 
@@ -6,13 +9,13 @@ table {
 }
 
 table th {
-    border: 2px solid rgb(87, 6, 6);
+    border: 2px solid rgb(57, 85, 107);
     padding: 2px;
     text-align: left;
 }
 
 table td {
-    border: 2px solid rgb(87, 6, 6);
+    border: 2px solid rgb(57, 85, 107);
     height: 40px;
     padding: 5px;
 }
@@ -29,7 +32,7 @@ table th {
 }
 
 .centered-link a{
-    background-color: rgb(87, 6, 6);
+    background-color: rgb(57, 85, 107);
     color: white;
     padding: 5px;
     text-decoration: none;
@@ -55,4 +58,44 @@ table th {
 
 .acciones{
     width: 150px;
+}
+
+h5{
+    height: 35px;
+    color: rgb(57, 85, 107);
+    margin-bottom: 0px;
+    padding-top: 8px;
+}
+
+.forms-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+    max-width: 80%; 
+    width: 100%;
+}
+
+.formone{
+    display: flex;
+}
+
+.bus, .control{
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid rgb(57, 85, 107);
+    margin-right: 5px;
+}
+
+
+.boton-buscar{
+    width: 50px;
+    height: 35px;
+    margin-top: 0px;
+    padding: 0px;
+    border-radius: 5px;
+    background-color: rgb(57, 85, 107);
+    color: white;
+    border: 0px;
 }
