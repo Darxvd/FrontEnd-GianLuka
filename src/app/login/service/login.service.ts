@@ -13,8 +13,9 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: LoginEntity): Observable<any> {
-    return this.http.post(`${this.apiLogin}/login`, credentials);
+  login(user: LoginEntity): Observable<LoginEntity> {
+    const loginUrl = `${this.apiLogin}/login`;
+    return this.http.post<LoginEntity>(loginUrl, user);
   }
 
 }

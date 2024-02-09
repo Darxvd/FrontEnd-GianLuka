@@ -10,24 +10,32 @@ import { LoginEntity } from './models/login-entity';
 })
 export class LoginComponent {
 
-  user: LoginEntity = new LoginEntity(); // Cambiado a objeto en lugar de array
+  user: LoginEntity = new LoginEntity();
+  errorMessage: string = '';
 
   constructor(private router: Router, private loginService: LoginService) { }
 
   onSubmit() {
-    // Llama al servicio de login con la instancia de LoginEntity
     this.loginService.login(this.user).subscribe(
-      (response) => {
+      (response: LoginEntity) => {
+        // Inicio de sesión exitoso
         console.log("Inicio de sesión exitoso:", response);
-        // Puedes realizar acciones adicionales después de iniciar sesión, si es necesario
         this.router.navigate(['home']);
       },
       (error) => {
-        console.error('Error al iniciar sesión:', error);
-  
-        // Puedes mostrar un mensaje de error al usuario si lo deseas
-        // this.toastr.error('Error al iniciar sesión', 'Error');
+        // Inicio de sesión no exitoso
+        console.log("Inicio de sesión no exitoso:", error);
+
+        // Verifica si el error es debido a que el usuario no fue encontrado (código de estado 404)
+        if (error.status === 404) {
+          this.errorMessage = "Usuario no encontrado";
+        } else {
+          // Otro tipo de error, redirige a la página de inicio de sesión
+          this.errorMessage = "Error desconocido";
+          this.router.navigate(['/login']);
+        }
       }
     );
   }
+  
 }
